@@ -1,0 +1,156 @@
+<html>
+<head><title></title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+
+<div class="menu"><span class="material-symbols-outlined" id="menu">menu</span></div>
+<div class="logo">ShopNow</div>
+
+<div class="naviga">
+ <div id="nav"> <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">MENU</a></li>
+            <li><a href="#">ORDER</a></li>
+            <li><a href="#">ABOUT US</a></li>
+       
+        </ul>
+        </div>
+</div>
+<div class="search">Search <input type="search" id="gsearch" name="gsearch" placeholder="search for products"></div></div>
+
+
+<div class="profile">
+<div class="img"><i class="fa fa-user"></i></div>
+<div class="text"><h4 style="font-weight:lighter">Profile</h4></div>
+</div>
+
+<div class="profile">
+<div class="img"><i class="fa fa-heart"></i></div>
+<div class="text"><h4  style="font-weight:lighter">Whishlist</h4></div>
+</div>
+
+<div class="profile">
+<div class="img"><i class="fa fa-cart-plus"></i></div>
+<div class="text"><h4  style="font-weight:lighter">Cart</h4></div>
+</div>
+
+</nav>
+
+<main>
+<div class="ima"><img id="hey" src="shop1.jpg" ></div>
+<div class="txtu"><div class="t"><h1>Elevate <br> <span style="color:white; background-color:brown">Shopping</span> <br> Experience.</h1> <br> <p>Refresh your basics, try new trends,its time to cozy up your closet. sustainable and on a budge, off course.</p></div>
+<div class="button"><button class="butt">Shop Now</button></div>
+</div>
+
+<div class="ima" id="abc"><img id="hey" src="shop2.jpg"></div>
+</main>
+
+<div class="head"><span>Recommended Products</span></div>
+
+<div class= "container" ></div>
+
+<footer>
+
+<div class="onlineShoping">
+<h5>ONLINE SHOPING</h5>
+<ul>
+<li>Men</li>
+<li>Women</li>
+<li>Kids</li>
+<li>Home & LIVING</li>
+<li>Beauty</li>
+<li>Gift Card</li>
+<li>Myntra Inside</li>
+</ul>
+</div>
+
+<div class="customer">
+<h5>CUSTOMER POLICIES</h5>
+<li>Contact Us</li>
+<li>FAQ</li>
+<li>T&C</li>
+<li>Terms Of Use</li>
+</div>
+
+<div class="experience">
+<h5 style="color:black">KEEP IN TOUCH</h5><br>
+
+<div><i class="fa fa-instagram"></i></div><br>
+<div><i class="fa fa-facebook"></i></div><br>
+<div><i class="fa fa-linkedin"></i></div><br>
+<div><i class="fa fa-whatsapp"></i></div><br>
+</div>
+
+<div class="garentee">
+<div class="last">
+<div class="pic"><img src="" width="" heigth=""></div>
+<div class="likho"><b>100% ORIGINAL</b> <p style="color:rgba(0,0,0,0.650)">guarentee for all products at myntra.com</p></div>
+</div><br>
+<div class="last">
+<div class="pic"></div>
+<div class="likho"><b>RETURN WITHIN 14DAYS</b> <p style="color:rgba(0,0,0,0.650)">of receiving your order</p></div>
+</div>
+</div>
+</footer>
+</body>
+<script>
+//nav 
+ document.getElementById("menu").addEventListener("click",function(){
+        document.getElementsByClassName("naviga")[0].classList.toggle("mynavshow");
+})
+
+
+let cont = document.querySelector(".container")
+async function getData(){
+ let response = await fetch("https://dummyjson.com/products")
+ let data  = await response.json();
+console.log(data)
+
+
+data.products.forEach((product)=>{
+console.log(product);
+
+let productList = document.createElement('div');
+productList.className+="cont1"
+cont.appendChild(productList);
+let image = document.createElement('img')
+image.className+="image"
+image.src = product.thumbnail;
+productList.appendChild(image)
+
+let para = document.createElement('p')
+para.className+="h2"
+para.innerText =product.category;
+productList.appendChild(para)
+let heading = document.createElement('h3')
+heading.innerText = product.brand;
+heading.className+="heading"
+productList.appendChild(heading)
+let descriptions = document.createElement('p')
+descriptions.className+="h3"
+descriptions.innerText= product.description;
+productList.appendChild(descriptions )
+let cost = document.createElement('span')
+cost.innerText = "$"+ product.price;
+productList.appendChild(cost)
+
+cost.className+="price"
+
+let addToCart = document.createElement('button')
+addToCart.innerText = "ADD TO CART"
+addToCart.className+="cart"
+productList.appendChild(addToCart)
+})
+}
+getData()
+
+
+
+</script>
+</html>
